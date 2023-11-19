@@ -1,0 +1,1 @@
+insert into Clients (Second_Name, First_Name, Last_Name, Email, Phone) values ('Andronov', 'Ilya', 'Alexeevich', 'har1zma@gmail.com', '+793022030555')

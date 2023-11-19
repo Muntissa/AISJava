@@ -1,7 +1,6 @@
 package ru.pin120.course.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,19 +11,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Clients extends BaseEntity{
+public class Clients{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
     @Column(nullable = false)
-    public String SecondName;
+    private String secondName;
 
     @Column(nullable = false)
-    public String FirstName;
+    private String firstName;
 
     @Column(nullable = false)
-    public String LastName;
+    private String lastName;
 
     @Column(nullable = false)
-    public String Email;
+    private String email;
 
     @Column(nullable = false)
-    public String Phone;
+    private String phone;
+
+
 }
