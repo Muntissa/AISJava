@@ -13,22 +13,26 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Bookings extends BaseEntity{
-    @Column(nullable = false)
-    public LocalDate StartTime;
+public class Bookings {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     @Column(nullable = false)
-    public LocalDate EndTime;
+    LocalDate startTime;
 
     @Column(nullable = false)
-    public int Price;
+    LocalDate endTime;
 
     @Column(nullable = false)
-    public boolean IsActive = true;
+    int price;
+
+    @Column(nullable = false)
+    boolean isActive = true;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "bookings_services",
             joinColumns = @JoinColumn(name = "bookings_id"),
             inverseJoinColumns = @JoinColumn(name = "services_id"))
-    public List<Services> Services;
+    List<Services> services;
 }

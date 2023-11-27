@@ -14,21 +14,21 @@ import lombok.Setter;
 public class Clients{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    int id;
     @Column(nullable = false)
-    private String secondName;
+    String secondName;
 
     @Column(nullable = false)
-    private String firstName;
+    String firstName;
 
     @Column(nullable = false)
-    private String lastName;
+    String lastName;
 
     @Column(nullable = false)
-    private String email;
+    String email;
 
     @Column(nullable = false)
-    private String phone;
+    String phone;
 
 
 }

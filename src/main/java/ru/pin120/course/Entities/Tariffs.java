@@ -1,8 +1,7 @@
 package ru.pin120.course.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,16 +13,21 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Tariffs extends BaseEntity{
-    @Column(nullable = false)
-    public String Name;
+public class Tariffs {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     @Column(nullable = false)
-    public String Description;
+     String name;
 
     @Column(nullable = false)
-    public int Price;
+    public String description;
 
-    @OneToMany(mappedBy = "Tariff")
-    public List<Apartaments> Apartaments;
+    @Column(nullable = false)
+    public int price;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "tariff")
+    public List<Apartaments> apartaments;
 }

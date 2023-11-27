@@ -1,9 +1,7 @@
 package ru.pin120.course.Entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,10 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Facilities extends BaseEntity{
-    @Column(nullable = false)
-    public String Name;
+public class Facilities {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
-    @ManyToMany(mappedBy = "Facilities", cascade = CascadeType.ALL)
-    public List<Apartaments> Apartaments;
+    @Column(nullable = false)
+    String name;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "facilities", cascade = CascadeType.ALL)
+    List<Apartaments> apartaments;
 }

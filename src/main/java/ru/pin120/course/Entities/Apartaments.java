@@ -14,33 +14,37 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Apartaments extends BaseEntity{
-    @Column(nullable = false)
-    public int Number;
+public class Apartaments{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     @Column(nullable = false)
-    public int Area;
+    int number;
 
     @Column(nullable = false)
-    public String PhotoPath;
+    int area;
 
     @Column(nullable = false)
-    public boolean Reservation;
+    String photoPath;
+
+    @Column(nullable = false)
+    boolean reservation;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "apartments_facilities",
-            joinColumns = @JoinColumn(name = "apartments_id"),
+    @JoinTable(name = "apartaments_facilities",
+            joinColumns = @JoinColumn(name = "apartaments_id"),
             inverseJoinColumns = @JoinColumn(name = "facilities_id"))
-    public List<Facilities> Facilities;
+    List<Facilities> facilities;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "apartments_services",
-            joinColumns = @JoinColumn(name = "apartments_id"),
+    @JoinTable(name = "apartaments_services",
+            joinColumns = @JoinColumn(name = "apartaments_id"),
             inverseJoinColumns = @JoinColumn(name = "services_id"))
-    public List<Services> Services;
+    List<Services> services;
 
     @ManyToOne
     @NotEmpty
     @JoinColumn(name = "tariffs_id", nullable = false)
-    private Tariffs Tariff;
+    Tariffs tariff;
 }

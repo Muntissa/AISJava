@@ -1,10 +1,10 @@
 package ru.pin120.course.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.pin120.course.Entities.Clients;
 import ru.pin120.course.Services.ClientsService;
 
@@ -24,5 +24,15 @@ public class ClientsController {
     @PostMapping("/clients/save")
     public Clients save(@RequestBody Clients client) {
         return service.save(client);
+    }
+
+    @DeleteMapping("/clients/delete")
+    public void delete(@RequestBody Clients client) {
+        service.delete(client.getId());
+    }
+
+    @PostMapping("/clients/edit")
+    public Clients update(@RequestBody Clients client) {
+        return service.update(client);
     }
 }
