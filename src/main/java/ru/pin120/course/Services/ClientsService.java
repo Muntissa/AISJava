@@ -1,5 +1,6 @@
 package ru.pin120.course.Services;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,10 @@ public class ClientsService {
         return  repository.save(client);
     }
 
-    public Optional<Clients> findById(Long clientId) {
-        return repository.findById(clientId);
+    public Clients findById(Long clientId) {
+        Optional<Clients> clientById = repository.findById(clientId);
+
+        return clientById.orElseThrow(() -> new EntityNotFoundException("Клиент с ID " + clientId + " не найден"));
     }
 
     public List<Clients> getAllClients() {

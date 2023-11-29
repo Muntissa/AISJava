@@ -1,5 +1,6 @@
 package ru.pin120.course.Services;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import ru.pin120.course.Repositories.ClientsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApartamentsService {
@@ -18,6 +20,12 @@ public class ApartamentsService {
 
     public Apartaments save(Apartaments apartament) {
         return  repository.save(apartament);
+    }
+
+    public Apartaments findById(Long apartamentId) {
+        Optional<Apartaments> apartamentById = repository.findById(apartamentId);
+
+        return apartamentById.orElseThrow(() -> new EntityNotFoundException("Апартаменты с ID " + apartamentId + " не найден"));
     }
 
     public List<Apartaments> getAllApartaments() {

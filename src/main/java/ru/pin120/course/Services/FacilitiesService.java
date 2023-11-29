@@ -1,6 +1,7 @@
 package ru.pin120.course.Services;
 
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import ru.pin120.course.Repositories.FacilitiesRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FacilitiesService {
@@ -19,6 +21,12 @@ public class FacilitiesService {
 
     public Facilities save(Facilities facility) {
         return  repository.save(facility);
+    }
+
+    public Facilities findById(Long facilityId) {
+        Optional<Facilities> facilityById = repository.findById(facilityId);
+
+        return facilityById.orElseThrow(() -> new EntityNotFoundException("Удобство с ID " + facilityId + " не найден"));
     }
 
     public List<Facilities> getAllFacilities() {

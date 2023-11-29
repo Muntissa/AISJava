@@ -26,6 +26,11 @@ public class ClientsController {
         return service.save(client);
     }
 
+    @PostMapping("/clients/find")
+    public Clients getById(@RequestBody long id) {
+        return service.findById(id);
+    }
+
     @DeleteMapping("/clients/delete")
     public void delete(@RequestBody Clients client) {
         service.delete(client.getId());
