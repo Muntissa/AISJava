@@ -30,7 +30,7 @@ public class ApartamentsController {
         return service.findById(id);
     }
 
-    @DeleteMapping("/apartaments/delete")
+    @PostMapping("/apartaments/delete")
     public void delete(@RequestBody Apartaments apartament) {
         service.delete(apartament.getId());
     }

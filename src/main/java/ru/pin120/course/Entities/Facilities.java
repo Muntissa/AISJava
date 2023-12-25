@@ -23,6 +23,13 @@ public class Facilities {
     String name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "facilities", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "facilities")
     List<Apartaments> apartaments;
+
+    @PreRemove
+    private void removeFacilityFromApartaments() {
+        for (Apartaments apartament : apartaments) {
+            apartament.getFacilities().remove(this);
+        }
+    }
 }

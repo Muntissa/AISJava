@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import ru.pin120.course.Entities.Apartaments;
-import ru.pin120.course.Entities.Clients;
 import ru.pin120.course.Repositories.ApartamentsRepository;
-import ru.pin120.course.Repositories.ClientsRepository;
 
 import java.util.ArrayList;
 import java.util.List;

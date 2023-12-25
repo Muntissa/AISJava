@@ -19,15 +19,15 @@ public class Tariffs {
     long id;
 
     @Column(nullable = false)
-     String name;
+    String name;
 
     @Column(nullable = false)
-    public String description;
+    String description;
 
     @Column(nullable = false)
-    public int price;
+    int price;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "tariff")
-    public List<Apartaments> apartaments;
+    @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
+    List<Apartaments> apartaments;
 }

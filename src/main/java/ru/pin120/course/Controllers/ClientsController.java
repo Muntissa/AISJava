@@ -31,7 +31,7 @@ public class ClientsController {
         return service.findById(id);
     }
 
-    @DeleteMapping("/clients/delete")
+    @PostMapping("/clients/delete")
     public void delete(@RequestBody Clients client) {
         service.delete(client.getId());
     }

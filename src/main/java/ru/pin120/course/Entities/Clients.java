@@ -1,10 +1,14 @@
 package ru.pin120.course.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.awt.print.Book;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -30,5 +34,7 @@ public class Clients{
     @Column(nullable = false)
     String phone;
 
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    List<Bookings> bookings;
 }

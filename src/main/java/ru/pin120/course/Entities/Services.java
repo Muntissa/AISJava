@@ -19,19 +19,29 @@ public class Services {
     long id;
 
     @Column(nullable = false)
-    public String name;
+    String name;
 
     @Column(nullable = false)
-    public String description;
+    String description;
 
     @Column(nullable = false)
-    public int price;
+    int price;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "services", cascade = CascadeType.ALL)
-    public List<Apartaments> apartaments;
+    @ManyToMany(mappedBy = "services")
+    List<Apartaments> apartaments;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "services", cascade = CascadeType.ALL)
-    public List<Bookings> bookings;
+    @ManyToMany(mappedBy = "services")
+    List<Bookings> bookings;
+
+    @PreRemove
+    private void removeServicesFromAll() {
+        for (Apartaments apartament : apartaments) {
+            apartament.getServices().remove(this);
+        }
+        for (Bookings booking : bookings) {
+            booking.getServices().remove(this);
+        }
+    }
 }

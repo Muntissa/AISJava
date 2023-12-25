@@ -1,5 +1,6 @@
 package ru.pin120.course.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -31,20 +32,23 @@ public class Apartaments{
     @Column(nullable = false)
     boolean reservation;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "apartaments_facilities",
             joinColumns = @JoinColumn(name = "apartaments_id"),
             inverseJoinColumns = @JoinColumn(name = "facilities_id"))
     List<Facilities> facilities;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "apartaments_services",
             joinColumns = @JoinColumn(name = "apartaments_id"),
             inverseJoinColumns = @JoinColumn(name = "services_id"))
     List<Services> services;
 
     @ManyToOne
-    @NotEmpty
     @JoinColumn(name = "tariffs_id", nullable = false)
     Tariffs tariff;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "apartament", cascade = CascadeType.ALL)
+    List<Bookings> bookings;
 }

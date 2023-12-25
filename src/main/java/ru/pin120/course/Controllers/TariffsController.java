@@ -29,7 +29,7 @@ public class TariffsController {
         return service.findById(id);
     }
 
-    @DeleteMapping("/tariffs/delete")
+    @PostMapping("/tariffs/delete")
     public void delete(@RequestBody Tariffs tariff) {
         service.delete(tariff.getId());
     }

@@ -29,7 +29,7 @@ public class FacilitiesController {
         return service.findById(id);
     }
 
-    @DeleteMapping("/facilities/delete")
+    @PostMapping("/facilities/delete")
     public void delete(@RequestBody Facilities facility) {
         service.delete(facility.getId());
     }
